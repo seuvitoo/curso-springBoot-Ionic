@@ -1,22 +1,28 @@
 package br.dev.seuvito.backendloja.entities;
 
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
 public class Endereco {
     private static final long serialVersionUID = 1l;
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String logradouro;
     private String numero;
     private String complemento;
     private String bairro;
     private String cep;
 
-    @OneToMany
+    @ManyToOne
+    @JoinColumn(name = "cliente-id")
     private Cliente cliente;
 
+    @ManyToOne
+    @JoinColumn(name = "cidade-id")
     private Cidade cidade;
 
     public Endereco() {

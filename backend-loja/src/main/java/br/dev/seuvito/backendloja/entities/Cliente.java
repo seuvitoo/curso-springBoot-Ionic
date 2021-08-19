@@ -2,24 +2,27 @@ package br.dev.seuvito.backendloja.entities;
 
 import br.dev.seuvito.backendloja.entities.enums.TipoCliente;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.*;
 
-@Table(name = "cliente")
 @Entity
 public class Cliente {
     private static final long serialVersionUID = 1l;
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String nome;
     private String email;
     private String cnpjCPF;
     private Integer tipo;
 
+    @OneToMany(mappedBy = "cliente")
     private List<Endereco> enderecos = new ArrayList<>();
 
+    @ElementCollection
+    @CollectionTable(name = "TELEFONE")
     private Set<String> telefones = new HashSet<>();
 
     public Cliente() {
