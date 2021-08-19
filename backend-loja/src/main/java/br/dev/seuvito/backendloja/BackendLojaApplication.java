@@ -52,20 +52,20 @@ public class BackendLojaApplication implements CommandLineRunner {
         p2.getCategorias().addAll(Arrays.asList(cat1, cat2));
         p3.getCategorias().addAll(Arrays.asList(cat1));
 
-        Estado e1 = new Estado(null, "São Paulo");
-        Estado e2 = new Estado(null, "Minas Gerais");
+        Estado est1 = new Estado(null, "São Paulo");
+        Estado est2 = new Estado(null, "Minas Gerais");
 
-        Cidade c1 = new Cidade(null, "Uberlandia", e2);
-        Cidade c2 = new Cidade(null, "Campinas", e1);
-        Cidade c3 = new Cidade(null, "Itapevi", e1);
+        Cidade c1 = new Cidade(null, "Uberlandia", est2);
+        Cidade c2 = new Cidade(null, "Campinas", est1);
+        Cidade c3 = new Cidade(null, "Itapevi", est1);
 
-        e1.getCidades().addAll(Arrays.asList(c2, c3));
-        e2.getCidades().addAll(Arrays.asList(c1));
+        est1.getCidades().addAll(Arrays.asList(c2, c3));
+        est2.getCidades().addAll(Arrays.asList(c1));
 
         categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
         produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
 
-        estadoRepository.saveAll(Arrays.asList(e1, e2));
+        estadoRepository.saveAll(Arrays.asList(est1, est2));
         cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
 
         Cliente cli1 = new Cliente(null, "Maria Silva", "maria.silva@gmail.com", "1234567890", TipoCliente.PESSOAFISICA);

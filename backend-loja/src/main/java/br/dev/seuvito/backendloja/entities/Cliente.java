@@ -3,10 +3,11 @@ package br.dev.seuvito.backendloja.entities;
 import br.dev.seuvito.backendloja.entities.enums.TipoCliente;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.*;
 
 @Entity
-public class Cliente {
+public class Cliente implements Serializable {
     private static final long serialVersionUID = 1l;
 
     @Id
