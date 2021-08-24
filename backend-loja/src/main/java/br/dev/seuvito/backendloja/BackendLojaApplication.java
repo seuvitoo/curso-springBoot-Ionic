@@ -1,6 +1,7 @@
 package br.dev.seuvito.backendloja;
 
 import br.dev.seuvito.backendloja.entities.*;
+import br.dev.seuvito.backendloja.entities.enums.EstadoPagamento;
 import br.dev.seuvito.backendloja.entities.enums.TipoCliente;
 import br.dev.seuvito.backendloja.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,28 +9,28 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 @SpringBootApplication
 public class BackendLojaApplication implements CommandLineRunner {
 
     @Autowired
+    PedidoRepository pedidoRepository;
+    @Autowired
     private CategoriaRepository categoriaRepository;
-
     @Autowired
     private ProdutoRepository produtoRepository;
-
     @Autowired
     private EstadoRepository estadoRepository;
-
     @Autowired
     private CidadeRepository cidadeRepository;
-
     @Autowired
     private ClienteRepository clienteRepository;
-
     @Autowired
     private EnderecoRepository enderecoRepository;
+    @Autowired
+    private PagamentoRepository pagamentoRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(BackendLojaApplication.class, args);
@@ -83,6 +84,19 @@ public class BackendLojaApplication implements CommandLineRunner {
 
         clienteRepository.saveAll(Arrays.asList(cli1));
         enderecoRepository.saveAll(Arrays.asList(end1, end2));
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+        Pedido ped1 = new Pedido(null, sdf.parse("30/09/2017 10:32"), cli1, end1);
+
+        Pedido ped2 = new Pedido(null, sdf.parse("10/10/2017 19:35"), cli1, end2);
+        cli1.getPedidos().addAll(Arrays.asList(ped1, ped2));
+        Pagamento pagto1 = new PagamentoCartao(null, EstadoPagamento.QUITADO, ped1, 6);
+        ped1.setPagamento(pagto1);
+
+        Pagamento pagto2 = new PagamentoBoleto(null, EstadoPagamento.PENDENTE, ped2, sdf.parse("20/10/2017 00:00"), null);
+        ped2.setPagamento(pagto2);
+        pedidoRepository.saveAll(Arrays.asList(ped1, ped2));
+        pagamentoRepository.saveAll(Arrays.asList(pagto1, pagto2));
 
 
     }
