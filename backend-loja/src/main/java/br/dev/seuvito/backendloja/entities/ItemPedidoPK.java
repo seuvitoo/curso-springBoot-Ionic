@@ -1,5 +1,7 @@
 package br.dev.seuvito.backendloja.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -10,6 +12,7 @@ import java.util.Objects;
 public class ItemPedidoPK implements Serializable {
     private static final long serialVersionUID = 1l;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "pedido_id")
     private Pedido pedido;
