@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.net.URI;
 
 @RestController
 @RequestMapping(value = "/categorias")
@@ -27,7 +26,12 @@ public class CategoriaController {
         return ResponseEntity.ok().body(resultoBusca);
     }
 
+    public ResponseEntity<Void> insert(Categoria obj) {
+        obj = service.insert(obj);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+        return ResponseEntity.created(uri).build();
 
+    }
 
 
 }
