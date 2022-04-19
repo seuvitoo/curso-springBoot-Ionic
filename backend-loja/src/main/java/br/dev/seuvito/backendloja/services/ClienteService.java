@@ -15,7 +15,7 @@ public class ClienteService {
     private ClienteRepository repo;
 
 
-    public Cliente buscarClientePorID(Integer id) throws ObjectNotFoundException {
+    public Cliente find(Integer id) throws ObjectNotFoundException {
         Optional<Cliente> obj = repo.findById(id);
         return obj.orElseThrow(() -> new br.dev.seuvito.backendloja.services.execeptions.ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Cliente.class.getName()));
     }
