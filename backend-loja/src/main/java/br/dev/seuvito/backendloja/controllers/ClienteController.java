@@ -18,8 +18,8 @@ public class ClienteController {
     private ClienteService service;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Cliente> buscarCategoria(@PathVariable Integer id) throws ObjectNotFoundException {
-        Cliente resultoBusca = service.buscarClientePorID(id);
+    public ResponseEntity<Cliente> find(@PathVariable Integer id) throws ObjectNotFoundException {
+        Cliente resultoBusca = service.find(id);
 
         return ResponseEntity.ok().body(resultoBusca);
     }

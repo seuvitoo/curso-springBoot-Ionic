@@ -18,8 +18,8 @@ public class PedidoController {
     private PedidoService service;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Pedido> buscarCategoria(@PathVariable Integer id) throws ObjectNotFoundException {
-        Pedido resultoBusca = service.buscarPedidoPorId(id);
+    public ResponseEntity<Pedido> find(@PathVariable Integer id) throws ObjectNotFoundException {
+        Pedido resultoBusca = service.find(id);
 
         return ResponseEntity.ok().body(resultoBusca);
     }
