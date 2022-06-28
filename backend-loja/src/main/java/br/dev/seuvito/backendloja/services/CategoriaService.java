@@ -14,7 +14,6 @@ public class CategoriaService {
     @Autowired
     private CategoriaRepository repo;
 
-
     public Categoria find(Integer id) throws ObjectNotFoundException {
         Optional<Categoria> obj = repo.findById(id);
         return obj.orElseThrow(() -> new br.dev.seuvito.backendloja.services.execeptions.ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));

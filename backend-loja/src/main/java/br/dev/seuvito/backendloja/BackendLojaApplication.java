@@ -75,12 +75,8 @@ public class BackendLojaApplication implements CommandLineRunner {
 
         cli1.getTelefones().addAll(Arrays.asList("1198786767", "1198877878"));
 
-        Endereco end1 = new Endereco(null,
-                "Rua flores", "100",
-                "APT203", "Sao Cristovao", "06695490", cli1, c1);
-        Endereco end2 = new Endereco(null,
-                "Avenida Matos", "100",
-                "APT203", "Eldorado", "06695490", cli1, c2);
+        Endereco end1 = new Endereco(null, "Rua flores", "100", "APT203", "Sao Cristovao", "06695490", cli1, c1);
+        Endereco end2 = new Endereco(null, "Avenida Matos", "100", "APT203", "Eldorado", "06695490", cli1, c2);
 
         cli1.getEnderecos().addAll(Arrays.asList(end1, end2));
 
