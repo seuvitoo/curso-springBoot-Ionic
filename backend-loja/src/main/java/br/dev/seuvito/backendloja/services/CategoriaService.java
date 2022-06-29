@@ -1,5 +1,6 @@
 package br.dev.seuvito.backendloja.services;
 
+import br.dev.seuvito.backendloja.DTO.CategoriaDTO;
 import br.dev.seuvito.backendloja.entities.Categoria;
 import br.dev.seuvito.backendloja.repositories.CategoriaRepository;
 import br.dev.seuvito.backendloja.services.execeptions.DataIntegratyException;
@@ -52,6 +53,10 @@ public class CategoriaService {
     public Page<Categoria> findPage(Integer page, Integer linePerPage, String orderBy, String direction) {
         PageRequest pageRequest = PageRequest.of(page, linePerPage, Sort.Direction.valueOf(direction), orderBy);
         return repo.findAll(pageRequest);
+    }
+
+    public Categoria fromDTO(CategoriaDTO objDTO) {
+        return new Categoria(objDTO.getId(), objDTO.getNome());
     }
 
 
