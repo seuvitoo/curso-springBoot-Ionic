@@ -1,9 +1,7 @@
 package br.dev.seuvito.backendloja.entities;
 
 import br.dev.seuvito.backendloja.entities.enums.TipoCliente;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -41,7 +39,7 @@ public class Cliente implements Serializable {
         this.nome = nome;
         this.email = email;
         this.cnpjCPF = cnpjCPF;
-        this.tipo = tipo.getCod();
+        this.tipo = (tipo == null) ? null : tipo.getCod();
     }
 
     public Integer getId() {

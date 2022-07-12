@@ -37,3 +37,4 @@ public class CategoriaDTO implements Serializable {
         this.nome = nome;
     }
 }
+
