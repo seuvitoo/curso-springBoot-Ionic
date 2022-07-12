@@ -10,6 +10,7 @@ public class AppError implements Serializable {
     private String msg;
     private Long timeStamp;
 
+
     public AppError() {
     }
 
