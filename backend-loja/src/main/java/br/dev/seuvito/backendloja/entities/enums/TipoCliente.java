@@ -5,8 +5,8 @@ public enum TipoCliente {
     PESSOAFISICA(1, "Pessoa Fisica"),
     PESSOAJURIDICA(2, "Pessoa Juridica");
 
-    private int cod;
-    private String descricao;
+    private final int cod;
+    private final String descricao;
 
     private TipoCliente(int cod, String descricao) {
         this.cod = cod;

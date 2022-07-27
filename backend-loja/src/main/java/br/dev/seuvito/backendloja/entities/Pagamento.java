@@ -1,7 +1,6 @@
 package br.dev.seuvito.backendloja.entities;
 
 import br.dev.seuvito.backendloja.entities.enums.EstadoPagamento;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -11,11 +10,11 @@ import java.util.Objects;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Pagamento implements Serializable {
-    private static final long serialVersionUID = 1l;
+    private static final long serialVersionUID = 1L;
 
     @Id
     private Integer id;
-    private EstadoPagamento estadoPagamento;
+    private Integer estadoPagamento;
 
     @JsonIgnore
     @OneToOne
@@ -27,8 +26,9 @@ public abstract class Pagamento implements Serializable {
     }
 
     public Pagamento(Integer id, EstadoPagamento estadoPagamento, Pedido pedido) {
+        super();
         this.id = id;
-        this.estadoPagamento = estadoPagamento;
+        this.estadoPagamento = (estadoPagamento == null) ? null : estadoPagamento.getCod();
         this.pedido = pedido;
 
     }
@@ -50,11 +50,11 @@ public abstract class Pagamento implements Serializable {
     }
 
     public EstadoPagamento getEstadoPagamento() {
-        return estadoPagamento;
+        return EstadoPagamento.toEnum(estadoPagamento);
     }
 
-    public void setEstadoPagamento(EstadoPagamento estadoPagamento) {
-        this.estadoPagamento = estadoPagamento;
+    public void setEstadoPagamento(EstadoPagamento estado) {
+        this.estadoPagamento = estado.getCod();
     }
 
     @Override
